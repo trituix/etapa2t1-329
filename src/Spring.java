@@ -26,7 +26,12 @@ public class Spring extends PhysicsElement {
    }
    
    public double getMass() {
-	   return 1;
+	   double springMass = 0;
+	   if (a_end != null)
+		   springMass += a_end.getMass();
+	   if (b_end != null)
+		   springMass += b_end.getMass();
+	   return springMass;
    }
    
    public double getAendPosition() {
