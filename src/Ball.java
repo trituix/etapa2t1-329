@@ -21,6 +21,7 @@ public class Ball extends PhysicsElement {
       this.radius = radius;
       pos_t = position;
       speed_t = speed;
+      springs = new ArrayList<Spring>();
    }
    public double getRadius() {
       return radius;

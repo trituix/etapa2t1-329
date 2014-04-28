@@ -65,11 +65,11 @@ public class Spring extends PhysicsElement {
       }
       return force;
    }
-   public void computeNextState(double delta_t, MyWorld w){
+   public void computeNextState(double delta_t, MyWorld w) {
 	   
    }
    
-   public void updateState(){
+   public void updateState() {
 	   
    }
 
