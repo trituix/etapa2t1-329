@@ -77,6 +77,6 @@ public class Spring extends PhysicsElement {
       return "Spring_"+ getId()+":a_end\tb_end";
    }
    public String getState() {
-	  return a_end.getState() + "\\" + b_end.getState();
+	  return a_end.getState() + "\t\t" + b_end.getState();
    }
 }
