@@ -16,10 +16,20 @@ public class Spring extends PhysicsElement {
    public void attachEnd (Ball sa) {  // note: we attach a spring to a ball, 
       if(a_end==null)                             //       not the other way around.
          a_end = sa;                     
-     // to be completed by you
+      else if(b_end == null)
+    	  b_end = sa;
+      else {
+    	  System.out.println("Solo puedes unir dos bolas a un resorte");
+    	  System.exit(-1);
+      }
       sa.attachSpring(this);
    }
-   private double getAendPosition() {
+   
+   public double getMass() {
+	   return 1;
+   }
+   
+   public double getAendPosition() {
       if (a_end != null)
          return a_end.getPosition();
       if (b_end != null)
@@ -27,25 +37,41 @@ public class Spring extends PhysicsElement {
       return 0;
    }
    public double getBendPosition() {
-    // to be coded by you
+	   if (b_end != null)
+		   return b_end.getPosition();
+	   if (a_end != null)
+	       return a_end.getPosition()-restLength;
+	   return 0;
    }
+   
    public double getForce(Ball ball) {
       double force = 0;
       if ((a_end == null) || (b_end == null))
          return force;
       if ((ball != a_end) && (ball != b_end))
          return force;
-      // to be completed by you
+      if(ball == a_end) {
+    	  double delta_pos = a_end.getPosition() - restLength;
+    	  return stiffness*delta_pos;
+      }
+      if(ball == b_end) {
+    	  double delta_pos = b_end.getPosition() - restLength;
+    	  return stiffness*delta_pos;
+      }
+      return force;
    }
    public void computeNextState(double delta_t, MyWorld w){
-   } 
+	   
+   }
+   
    public void updateState(){
+	   
    }
 
    public String getDescription() {
       return "Spring_"+ getId()+":a_end\tb_end";
    }
    public String getState() {
-     //  to be coded by you
+	  return a_end.getState() + "\\" + b_end.getState();
    }
 }

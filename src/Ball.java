@@ -38,9 +38,15 @@ public class Ball extends PhysicsElement {
 	    return pos_t;
    }
    private double getNetForce() {
-    // to be coded by you
+	   double sum = 0;
+	   double my_force = a_t*mass;
+	   return sum;
    }
   
+   public void attachSpring(Spring s) {
+	   springs.add(s);
+   }
+   
 
    public void computeNextState(double delta_t, MyWorld world) {
      Ball b;  // Assumption: on collision we only change speed.   
@@ -50,7 +56,10 @@ public class Ball extends PhysicsElement {
         a_t= getNetForce()/mass;
         pos_tPlusDelta = pos_t;
      } else {
-         // to be coded by you        
+    	 speed_tPlusDelta=speed_t;
+         pos_tPlusDelta = pos_t;
+         a_t= getNetForce()/mass;
+         pos_tPlusDelta = pos_t + speed_t*delta_t;     
      }
    }
    public boolean collide(Ball b) {
