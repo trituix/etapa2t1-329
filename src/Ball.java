@@ -61,10 +61,9 @@ public class Ball extends PhysicsElement {
         a_t= getNetForce()/mass;
         pos_tPlusDelta = pos_t;
      } else {
-    	 speed_tPlusDelta=speed_t;
-         pos_tPlusDelta = pos_t;
-         a_t= getNetForce()/mass;
-         pos_tPlusDelta = pos_t + speed_t*delta_t;     
+    	 a_t= getNetForce()/mass;
+    	 speed_tPlusDelta=a_t*delta_t; 
+         pos_tPlusDelta = pos_t + a_t*delta_t*delta_t;     
      }
    }
    public boolean collide(Ball b) {
