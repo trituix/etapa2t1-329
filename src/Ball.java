@@ -40,6 +40,10 @@ public class Ball extends PhysicsElement {
    private double getNetForce() {
 	   double sum = 0;
 	   double my_force = a_t*mass;
+	   sum += my_force;
+	   for (Spring s: springs) {
+		   sum += s.getForce(this);
+	   }
 	   return sum;
    }
   
