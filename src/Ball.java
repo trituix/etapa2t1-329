@@ -40,8 +40,8 @@ public class Ball extends PhysicsElement {
    }
    private double getNetForce() {
 	   double sum = 0;
-	   double my_force = a_t*mass;
-	   sum += my_force;
+	   //double my_force = a_t*mass;
+	   //sum += my_force;
 	   for (Spring s: springs) {
 		   sum += s.getForce(this);
 	   }
@@ -59,11 +59,11 @@ public class Ball extends PhysicsElement {
         speed_tPlusDelta=(speed_t*(mass-b.getMass())+2*b.getMass()*b.getSpeed())/(mass+b.getMass());
         pos_tPlusDelta = pos_t;
         a_t= getNetForce()/mass;
-        pos_tPlusDelta = pos_t;
+        pos_tPlusDelta = pos_t + a_t*delta_t*delta_t + speed_t*delta_t;
      } else {
     	 a_t= getNetForce()/mass;
     	 speed_tPlusDelta=a_t*delta_t; 
-         pos_tPlusDelta = pos_t + a_t*delta_t*delta_t;     
+         pos_tPlusDelta = pos_t + a_t*delta_t*delta_t + speed_t*delta_t;     
      }
    }
    public boolean collide(Ball b) {
