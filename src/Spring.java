@@ -45,7 +45,7 @@ public class Spring extends PhysicsElement {
 	   if (b_end != null)
 		   return b_end.getPosition();
 	   if (a_end != null)
-	       return a_end.getPosition()-restLength;
+	       return a_end.getPosition()+restLength;
 	   return 0;
    }
    
@@ -56,11 +56,11 @@ public class Spring extends PhysicsElement {
       if ((ball != a_end) && (ball != b_end))
          return force;
       if(ball == a_end) {
-    	  double delta_pos = (b_end.getPosition()-a_end.getPosition()) - restLength;
+    	  double delta_pos = (this.getBendPosition()-this.getAendPosition()) - restLength;
     	  return stiffness*delta_pos;
       }
       if(ball == b_end) {
-    	  double delta_pos = (b_end.getPosition()-a_end.getPosition()) - restLength;
+    	  double delta_pos = (this.getBendPosition()-this.getAendPosition()) - restLength;
     	  return -1*stiffness*delta_pos;
       }
       return force;
