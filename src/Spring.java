@@ -36,14 +36,14 @@ public class Spring extends PhysicsElement {
    
    public double getAendPosition() {
       if (a_end != null)
-         return a_end.getPosition();
+         return a_end.getPosition()+a_end.getRadius();
       if (b_end != null)
          return b_end.getPosition()-restLength;
       return 0;
    }
    public double getBendPosition() {
 	   if (b_end != null)
-		   return b_end.getPosition();
+		   return b_end.getPosition()-b_end.getRadius();
 	   if (a_end != null)
 	       return a_end.getPosition()+restLength;
 	   return 0;
