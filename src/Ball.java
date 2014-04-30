@@ -21,6 +21,7 @@ public class Ball extends PhysicsElement {
       this.radius = radius;
       pos_t = position;
       speed_t = speed;
+   
       springs = new ArrayList<Spring>();
    }
    public double getRadius() {
@@ -30,7 +31,7 @@ public class Ball extends PhysicsElement {
       return speed_t;
    }
    public String getState() {
-	   return String.valueOf(Math.rint(pos_t*100)/100);
+	   return String.valueOf(pos_t);
    }
    public double getMass() {
 	    return mass;
@@ -50,6 +51,7 @@ public class Ball extends PhysicsElement {
   
    public void attachSpring(Spring s) {
 	   springs.add(s);
+	   //a_t = getNetForce()/mass;
    }
    
 
@@ -60,9 +62,12 @@ public class Ball extends PhysicsElement {
         a_t= getNetForce()/mass;
         pos_tPlusDelta = pos_t + a_t*delta_t*delta_t + speed_t*delta_t;
      } else {
+    	 a_tMinusDelta = a_t;
     	 a_t= getNetForce()/mass;
-    	 speed_tPlusDelta=a_t*delta_t; 
-         pos_tPlusDelta = pos_t + a_t*delta_t*delta_t + speed_t*delta_t;     
+    	 //speed_tPlusDelta = speed_t + 0.5*(3*a_t - a_tMinusDelta)*delta_t;
+    	 speed_tPlusDelta=speed_t + a_t*delta_t;
+    	 //pos_tPlusDelta = pos_t + speed_t*delta_t + (1/6)*(4*a_t - a_tMinusDelta)*delta_t*delta_t;
+         pos_tPlusDelta = pos_t + 0.5*a_t*delta_t*delta_t + speed_t*delta_t;
      }
    }
    public boolean collide(Ball b) {
@@ -79,6 +84,7 @@ public class Ball extends PhysicsElement {
    public void updateState(){
      pos_t = pos_tPlusDelta;
      speed_t = speed_tPlusDelta;
+     a_tMinusDelta = a_t;
    }
    
    public String getDescription() {
