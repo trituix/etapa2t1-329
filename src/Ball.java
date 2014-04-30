@@ -30,7 +30,7 @@ public class Ball extends PhysicsElement {
       return speed_t;
    }
    public String getState() {
-	   return String.valueOf(pos_t);
+	   return String.valueOf(Math.rint(pos_t*100)/100);
    }
    public double getMass() {
 	    return mass;
@@ -57,7 +57,6 @@ public class Ball extends PhysicsElement {
      Ball b;  // Assumption: on collision we only change speed.   
      if ((b=world.findCollidingBall(this))!= null){ /* elastic collision */
         speed_tPlusDelta=(speed_t*(mass-b.getMass())+2*b.getMass()*b.getSpeed())/(mass+b.getMass());
-        pos_tPlusDelta = pos_t;
         a_t= getNetForce()/mass;
         pos_tPlusDelta = pos_t + a_t*delta_t*delta_t + speed_t*delta_t;
      } else {

@@ -77,6 +77,6 @@ public class Spring extends PhysicsElement {
       return "Spring_"+ getId()+":a_end\tb_end";
    }
    public String getState() {
-	  return String.valueOf(a_end.getPosition()+a_end.getRadius()) + "\t\t" + String.valueOf(b_end.getPosition()-b_end.getRadius());
+	  return String.valueOf(Math.rint(a_end.getPosition()*100)/100+a_end.getRadius()) + "\t\t" + String.valueOf(b_end.getPosition()-b_end.getRadius());
    }
 }
